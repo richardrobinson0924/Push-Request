@@ -16,6 +16,7 @@ class WebhookService: ObservableObject {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = try! JSONEncoder().encode(user)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         self.urlSession.dataTask(with: urlRequest).resume()
     }

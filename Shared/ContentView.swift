@@ -28,7 +28,7 @@ struct ContentView: View {
             case .success(let token):
                 self.accessToken = token.accessToken
                 #if os(iOS)
-                UIApplication.shared.registerForRemoteNotifications()
+                DispatchQueue.main.async(execute: UIApplication.shared.registerForRemoteNotifications)
                 #else
                 NSApplication.shared.registerForRemoteNotifications()
                 #endif

@@ -42,6 +42,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                     deviceToken: deviceTokenString
                 )
                 
+                print(webhookUser)
+                
                 self.webhookService.addUser(webhookUser)
                 
             case .failure(let error):
@@ -52,6 +54,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error.localizedDescription)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("hello")
+        completionHandler(.newData)
     }
 }
 #endif
