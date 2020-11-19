@@ -18,11 +18,29 @@ struct LoginView: View {
     }
 }
 
+struct InstallGHAppView: View {
+    @Environment(\.openURL) var openURL
+    
+    var url: URL {
+        let path = "/installations/new"
+        let schemeHost = Configuration.shared.githubAppLink
+        
+        return URL(string: "\(schemeHost)\(path)")!
+    }
+
+    var body: some View {
+        Button("Install Github App") {
+            openURL(url)
+        }
+    }
+}
+
 struct ContentView: View {
     @StateObject var authenticationService = AuthenticationService()
     @AppStorage("accessToken") var accessToken: String = ""
+    @AppStorage("ghAppInstalled") var hasGithubAppBeenInstalled: Bool = false
     
-    func onOpenURL(_ url: URL) {
+    func onOpenURLFromAuthentication(_ url: URL) {
         self.authenticationService.onRedirect(from: url) { (result) in
             switch result {
             case .success(let token):
@@ -41,11 +59,19 @@ struct ContentView: View {
 
     
     var body: some View {
-        if self.accessToken == "" {
+        switch (self.accessToken, self.hasGithubAppBeenInstalled) {
+        case ("", false):
             LoginView()
                 .environmentObject(self.authenticationService)
-                .onOpenURL(perform: self.onOpenURL)
-        } else {
+                .onOpenURL(perform: self.onOpenURLFromAuthentication)
+        
+        case (_, false):
+            InstallGHAppView()
+                .onOpenURL { _ in
+                    self.hasGithubAppBeenInstalled = true
+                }
+            
+        case (_, true):
             Text(self.accessToken)
         }
     }

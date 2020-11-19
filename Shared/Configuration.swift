@@ -13,8 +13,8 @@ struct Configuration: Codable {
     let githubAppId: Int
     let githubClientId: String
     let githubClientSecret: String
-    let githubAppName: String
     let githubRedirectUri: String
+    let githubAppLink: String
     
     init() {
         let path = Bundle.main.path(forResource: "Preferences", ofType: "plist")!

@@ -124,14 +124,11 @@
 		072E2B0B2564CDBB00035051 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				07D8739D256624860023B547 /* Views */,
+				07D8739C2566246D0023B547 /* Models */,
+				07D873972566243E0023B547 /* Services */,
 				072E2B0C2564CDBB00035051 /* Push_RequestApp.swift */,
-				072E2B0D2564CDBB00035051 /* ContentView.swift */,
 				072E2B0E2564CDBE00035051 /* Assets.xcassets */,
-				072E2B4E2564CEB200035051 /* AuthenticationService.swift */,
-				072E2B722564E84300035051 /* GithubService.swift */,
-				072E2B8B2564EAF100035051 /* WebhookService.swift */,
-				072E2B7D2564E89200035051 /* GithubUser.swift */,
-				072E2B842564EA4400035051 /* WebhookUser.swift */,
 				072E2B592564D28300035051 /* Configuration.swift */,
 				072E2B602564D41B00035051 /* Preferences.plist */,
 				072E2B6B2564E2B300035051 /* URL+Extensions.swift */,
@@ -183,6 +180,33 @@
 				072E2B342564CDBE00035051 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		07D873972566243E0023B547 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				072E2B8B2564EAF100035051 /* WebhookService.swift */,
+				072E2B4E2564CEB200035051 /* AuthenticationService.swift */,
+				072E2B722564E84300035051 /* GithubService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		07D8739C2566246D0023B547 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				072E2B842564EA4400035051 /* WebhookUser.swift */,
+				072E2B7D2564E89200035051 /* GithubUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		07D8739D256624860023B547 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				072E2B0D2564CDBB00035051 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
