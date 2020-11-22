@@ -35,21 +35,40 @@ struct InstallGHAppView: View {
     }
 }
 
+struct MainView: View {
+    var events: [WebhookEvent] {
+        let events = UserDefaults.group!.array(WebhookEvent.self, forKey: "events") ?? []
+        return events
+    }
+    
+    var body: some View {
+        Text(events.first?.title ?? "")
+    }
+}
+
 struct ContentView: View {
     @StateObject var authenticationService = AuthenticationService()
-    @AppStorage("accessToken") var accessToken: String = ""
-    @AppStorage("ghAppInstalled") var hasGithubAppBeenInstalled: Bool = false
+    @StateObject var githubService = GithubService()
+    
+    @AppStorage("accessToken", store: .group) var accessToken: String = ""
+    @AppStorage("ghAppInstalled", store: .group) var hasGithubAppBeenInstalled: Bool = false
     
     func onOpenURLFromAuthentication(_ url: URL) {
         self.authenticationService.onRedirect(from: url) { (result) in
             switch result {
             case .success(let token):
-                self.accessToken = token.accessToken
-                #if os(iOS)
-                DispatchQueue.main.async(execute: UIApplication.shared.registerForRemoteNotifications)
-                #else
-                NSApplication.shared.registerForRemoteNotifications()
-                #endif
+                self.githubService.getNumberOfInstallations(from: token.accessToken) { (n) in
+                    if let n = n, n > 0 {
+                        self.hasGithubAppBeenInstalled = true
+                    }
+                    
+                    self.accessToken = token.accessToken
+                    #if os(iOS)
+                    DispatchQueue.main.async(execute: UIApplication.shared.registerForRemoteNotifications)
+                    #else
+                    NSApplication.shared.registerForRemoteNotifications()
+                    #endif
+                }
                 
             case .failure(let error):
                 print(error)
@@ -72,7 +91,7 @@ struct ContentView: View {
                 }
             
         case (_, true):
-            Text(self.accessToken)
+            MainView()
         }
     }
 }

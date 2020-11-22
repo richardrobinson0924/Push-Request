@@ -20,7 +20,7 @@ class AuthenticationService: ObservableObject {
         case dataTaskFailure
     }
     
-    private static let scopes = ["repo:status", "admin:repo_hook", "notifications", "read:user"]
+    private static let scopes = ["repo:status", "admin:repo_hook", "notifications", "read:user", "repo"]
     
     private let state = UUID()
     private let urlSession = URLSession.shared
