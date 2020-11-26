@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07207E9D256B3100002DDC67 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074CA6D6256627C5004E57EF /* Color+Extensions.swift */; };
+		07207EA4256B3105002DDC67 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F90017256A27F500A75A84 /* UserDefaults+Extensions.swift */; };
+		07207EAB256B3109002DDC67 /* WebhookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B842564EA4400035051 /* WebhookUser.swift */; };
+		07207EEF256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */; };
+		07207EF0256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */; };
+		07215537256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215536256F9C57001B73AF /* AllowedEventTypesView.swift */; };
+		07215538256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215536256F9C57001B73AF /* AllowedEventTypesView.swift */; };
+		07215540256F9D22001B73AF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721553F256F9D22001B73AF /* Settings.swift */; };
+		07215541256F9D22001B73AF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721553F256F9D22001B73AF /* Settings.swift */; };
+		07215549256FA945001B73AF /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215548256FA945001B73AF /* CTAButton.swift */; };
+		0721554A256FA945001B73AF /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215548256FA945001B73AF /* CTAButton.swift */; };
+		07215552256FA98D001B73AF /* AuthorizeAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215551256FA98D001B73AF /* AuthorizeAppView.swift */; };
+		07215553256FA98D001B73AF /* AuthorizeAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215551256FA98D001B73AF /* AuthorizeAppView.swift */; };
 		072E2B282564CDBE00035051 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B272564CDBE00035051 /* Tests_iOS.swift */; };
 		072E2B332564CDBE00035051 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B322564CDBE00035051 /* Tests_macOS.swift */; };
 		072E2B352564CDBE00035051 /* Push_RequestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B0C2564CDBB00035051 /* Push_RequestApp.swift */; };
@@ -108,6 +121,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGitHubView.swift; sourceTree = "<group>"; };
+		07215536256F9C57001B73AF /* AllowedEventTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowedEventTypesView.swift; sourceTree = "<group>"; };
+		0721553F256F9D22001B73AF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		07215548256FA945001B73AF /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
+		07215551256FA98D001B73AF /* AuthorizeAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeAppView.swift; sourceTree = "<group>"; };
 		072E2B0C2564CDBB00035051 /* Push_RequestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Push_RequestApp.swift; sourceTree = "<group>"; };
 		072E2B0D2564CDBB00035051 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		072E2B0E2564CDBE00035051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -311,6 +329,11 @@
 			isa = PBXGroup;
 			children = (
 				072E2B0D2564CDBB00035051 /* ContentView.swift */,
+				0721553F256F9D22001B73AF /* Settings.swift */,
+				07215536256F9C57001B73AF /* AllowedEventTypesView.swift */,
+				07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */,
+				07215551256FA98D001B73AF /* AuthorizeAppView.swift */,
+				07215548256FA945001B73AF /* CTAButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -576,13 +599,18 @@
 				072E2B4F2564CEB200035051 /* AuthenticationService.swift in Sources */,
 				072E2B8C2564EAF100035051 /* WebhookService.swift in Sources */,
 				072E2B5A2564D28300035051 /* Configuration.swift in Sources */,
+				07215540256F9D22001B73AF /* Settings.swift in Sources */,
+				07215549256FA945001B73AF /* CTAButton.swift in Sources */,
 				072E2B852564EA4400035051 /* WebhookUser.swift in Sources */,
 				072E2B6C2564E2B300035051 /* URL+Extensions.swift in Sources */,
+				07215552256FA98D001B73AF /* AuthorizeAppView.swift in Sources */,
 				072E2B7E2564E89200035051 /* GithubUser.swift in Sources */,
+				07207EEF256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */,
 				072E2B372564CDBE00035051 /* ContentView.swift in Sources */,
 				07F90018256A27F500A75A84 /* UserDefaults+Extensions.swift in Sources */,
 				074CA6D7256627C5004E57EF /* Color+Extensions.swift in Sources */,
 				072E2B352564CDBE00035051 /* Push_RequestApp.swift in Sources */,
+				07215537256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,13 +622,18 @@
 				072E2B502564CEB200035051 /* AuthenticationService.swift in Sources */,
 				072E2B8D2564EAF100035051 /* WebhookService.swift in Sources */,
 				072E2B5B2564D28300035051 /* Configuration.swift in Sources */,
+				07215541256F9D22001B73AF /* Settings.swift in Sources */,
+				0721554A256FA945001B73AF /* CTAButton.swift in Sources */,
 				072E2B862564EA4400035051 /* WebhookUser.swift in Sources */,
 				072E2B6D2564E2B300035051 /* URL+Extensions.swift in Sources */,
+				07215553256FA98D001B73AF /* AuthorizeAppView.swift in Sources */,
 				072E2B7F2564E89200035051 /* GithubUser.swift in Sources */,
+				07207EF0256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */,
 				072E2B382564CDBE00035051 /* ContentView.swift in Sources */,
 				07F90019256A27F500A75A84 /* UserDefaults+Extensions.swift in Sources */,
 				074CA6D8256627C5004E57EF /* Color+Extensions.swift in Sources */,
 				072E2B362564CDBE00035051 /* Push_RequestApp.swift in Sources */,
+				07215538256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +658,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F90034256A55B300A75A84 /* macOS_Widget.swift in Sources */,
+				07207EA4256B3105002DDC67 /* UserDefaults+Extensions.swift in Sources */,
+				07207EAB256B3109002DDC67 /* WebhookUser.swift in Sources */,
+				07207E9D256B3100002DDC67 /* Color+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +752,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -769,6 +806,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -832,6 +870,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DS63W44KSD;
@@ -857,6 +896,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DS63W44KSD;
@@ -1019,6 +1059,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "macOS Widget/macOS_Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DS63W44KSD;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1043,6 +1084,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "macOS Widget/macOS_Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DS63W44KSD;
 				ENABLE_HARDENED_RUNTIME = YES;

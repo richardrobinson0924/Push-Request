@@ -12,7 +12,7 @@ struct LoginView: View {
     @EnvironmentObject var authenticationService: AuthenticationService
     
     var body: some View {
-        Button("Login with GitHub") {
+        SignInWithGitHubView {
             openURL(self.authenticationService.getAuthorizationURL()!)
         }
     }
@@ -29,29 +29,31 @@ struct InstallGHAppView: View {
     }
 
     var body: some View {
-        Button("Install Github App") {
+        AuthorizeAppView {
             openURL(url)
         }
     }
 }
 
 struct MainView: View {
-    var events: [WebhookEvent] {
-        let events = UserDefaults.group!.array(WebhookEvent.self, forKey: "events") ?? []
-        return events
-    }
-    
     var body: some View {
-        Text(events.first?.title ?? "")
+        NavigationView {
+            Text("🚧 Under Construction 🚧")
+                .navigationTitle("Push Request")
+        }
     }
 }
 
 struct ContentView: View {
+    @Environment(\.openURL) var openURL
+
     @StateObject var authenticationService = AuthenticationService()
     @StateObject var githubService = GithubService()
+    @StateObject var webhookService = WebhookService()
     
     @AppStorage("accessToken", store: .group) var accessToken: String = ""
     @AppStorage("ghAppInstalled", store: .group) var hasGithubAppBeenInstalled: Bool = false
+    @AppStorage("githubId", store: .group) var id: Int = 0
     
     func onOpenURLFromAuthentication(_ url: URL) {
         self.authenticationService.onRedirect(from: url) { (result) in
@@ -91,13 +93,31 @@ struct ContentView: View {
                 }
             
         case (_, true):
-            MainView()
+            if id == 0 {
+                EmptyView()
+            } else {
+                TabView {
+                    MainView()
+                        .tabItem {
+                            Image(systemName: "note")
+                            Text("Home")
+                        }
+                    
+                    Settings(id: id)
+                        .environmentObject(webhookService as WebhookService)
+                        .tabItem {
+                            Image(systemName: "gearshape")
+                            Text("Settings")
+                        }
+                }
+                .onOpenURL(perform: openURL.callAsFunction(_:))
+            }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(webhookService: DummyWebhookService(), accessToken: "", hasGithubAppBeenInstalled: true, id: 1)
     }
 }

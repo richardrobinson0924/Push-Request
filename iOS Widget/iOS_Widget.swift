@@ -70,99 +70,17 @@ struct EntryView: View {
             Text("No Activity")
         } else {
             switch self.widgetFamily {
-            case .systemSmall:
-                SmallWidgetView(latestEvent: events.last!)
             case .systemMedium:
                 MediumWidgetView(latestEvent: events.last!)
             default:
-                LargeWidgetView(events: events)
+                fatalError()
             }
         }
-    }
-}
-
-extension WebhookEvent {
-    var iconName: String {
-        switch eventType {
-        case .issueAssigned, .issueOpened:
-            return "Open Issue"
-            
-        case .prReviewed, .prReviewRequested, .prOpened, .prClosed:
-            return "Pull Request"
-            
-        case .issueClosed:
-            return "Closed Issue"
-            
-        case .prMerged:
-            return "Merged Pull Request"
-        }
-    }
-    
-    var iconColor: Color {
-        switch eventType {
-        case .issueClosed, .prClosed:
-            return .ghRed
-            
-        case .prMerged:
-            return .ghPurple
-            
-        default:
-            return .ghGreen
-        }
-    }
-}
-
-struct SmallWidgetView : View {
-    let latestEvent: CellData
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: 0) {
-                Image(latestEvent.event.iconName)
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .padding(.horizontal, 6)
-                    .foregroundColor(latestEvent.event.iconColor)
-                
-                Text("\(latestEvent.event.repoName) #\(String(latestEvent.event.number))")
-                    .font(.footnote)
-                    .lineLimit(2)
-            }
-            .foregroundColor(.secondary)
-            
-            
-            Text(latestEvent.event.title)
-                .font(.footnote)
-                .fontWeight(.medium)
-                .lineLimit(4)
-                .padding(.horizontal, 8)
-            
-            Spacer()
-        }
-        .padding(.horizontal, 6)
-        .padding(.vertical)
-    }
-}
-
-struct LargeWidgetView: View {
-    let events: [CellData]
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            ForEach(events.suffix(3), id: \.id) { (data) in
-                MediumWidgetView(latestEvent: data, padding: 8)
-            }
-        }
-        .padding(.vertical, 10)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)    // << here !!
-        .background(Color(white: 0.1))
-        .colorScheme(.dark)
     }
 }
 
 struct MediumWidgetView : View {
     let latestEvent: CellData
-    var padding: CGFloat = 20
     
     var avatar: some View {
         let uiImage = UIImage(data: latestEvent.avatarData)!
@@ -176,11 +94,11 @@ struct MediumWidgetView : View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 0) {
-                Image(latestEvent.event.iconName)
+                Image(latestEvent.event.eventType.iconName)
                     .resizable()
-                    .frame(width: 20, height: 20)
-                    .padding(.horizontal, 10)
-                    .foregroundColor(latestEvent.event.iconColor)
+                    .frame(width: 22, height: 22)
+                    .padding(.horizontal, 14)
+                    .foregroundColor(latestEvent.event.eventType.iconColor)
                 
                 Text("\(latestEvent.event.repoName) #\(String(latestEvent.event.number))")
                     .font(.footnote)
@@ -190,7 +108,7 @@ struct MediumWidgetView : View {
             Text(latestEvent.event.title)
                 .font(.subheadline)
                 .fontWeight(.medium)
-                .padding(.horizontal, 40)
+                .padding(.horizontal, 50)
                 .lineLimit(3)
             
             Spacer()
@@ -203,12 +121,13 @@ struct MediumWidgetView : View {
                     .foregroundColor(.secondary)
                     .lineLimit(1)
             }
-            .padding(.horizontal, 40)
+            .padding(.horizontal, 50)
         }
-        .padding(.vertical, padding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)    // << here !!
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .padding(.vertical, 20)
         .background(Color(white: 0.1))
         .colorScheme(.dark)
+        .widgetURL(latestEvent.event.url)
     }
 }
 
@@ -220,7 +139,7 @@ struct iOS_Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             EntryView(events: entry.events)
         }
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemMedium])
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
     }
@@ -230,7 +149,7 @@ struct iOS_Widget_Previews: PreviewProvider {
     static let data = UIImage(named: "pic")!.pngData()!
     
     static let event = WebhookEvent(
-        eventType: .prOpened,
+        eventType: .issueAssigned,
         repoName: "instantish / instantish",
         number: 1580,
         title: "Updated next.JS to v10 & Removed `server.js` & Removed unused dependencies",
@@ -249,13 +168,7 @@ struct iOS_Widget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EntryView(events: events)
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-            
-            EntryView(events: events)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
-            
-            EntryView(events: events)
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
         }
     }
 }

@@ -8,7 +8,11 @@
 import Foundation
 
 extension UserDefaults {
+    #if os(iOS)
     static let group = UserDefaults(suiteName: "group.push-request")
+    #else
+    static let group = UserDefaults(suiteName: "DS63W44KSD.group.push-request")
+    #endif
     
     func array<Element: Codable>(_ type: Element.Type, forKey key: String) -> [Element]? {
         let decoder = JSONDecoder()

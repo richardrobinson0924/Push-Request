@@ -35,7 +35,14 @@ class UniversalAppDelegate: NSObject {
         githubService.getUser(from: accessToken) { (result) in
             switch result {
             case .success(let ghUser):
-                let webhookUser = WebhookUser(accessToken: accessToken, githubId: ghUser.id, deviceToken: deviceTokenString, events: [])
+                UserDefaults.group!.set(ghUser.id, forKey: "githubId")
+                
+                let webhookUser = WebhookUser(
+                    githubId: ghUser.id,
+                    deviceToken: deviceTokenString,
+                    events: [],
+                    allowedTypes: WebhookEvent.EventType.allCases
+                )
                 self.webhookService.addUser(webhookUser)
                 
             case .failure(let error):
@@ -47,12 +54,13 @@ class UniversalAppDelegate: NSObject {
     func application(didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         print("received new data")
         
-        guard let accessToken = UserDefaults.group!.string(forKey: "accessToken") else {
+        let id = UserDefaults.group!.integer(forKey: "githubId")
+        guard id != 0 else {
             completionHandler(false)
             return
         }
         
-        self.webhookService.getLatestEvent(forUserWithAccessToken: accessToken) { (result) in
+        self.webhookService.getLatestEvent(forUserWithId: id) { (result) in
             switch result {
             case .success(let event):
                 try! UserDefaults.group!.append(event, toArrayWithKey: "events")
