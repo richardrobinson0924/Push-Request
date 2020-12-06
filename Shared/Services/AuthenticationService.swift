@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class AuthenticationService: ObservableObject {
     struct AccessToken: Decodable {
@@ -27,8 +28,8 @@ class AuthenticationService: ObservableObject {
     
     func getAuthorizationURL() -> URL? {
         let queryItems = [
-            URLQueryItem(name: "client_id", value: Configuration.shared.githubClientId),
-            URLQueryItem(name: "redirect_uri", value: Configuration.shared.githubRedirectUri),
+            URLQueryItem(name: "client_id", value: Configuration.shared.GITHUB_CLIENT_ID),
+            URLQueryItem(name: "redirect_uri", value: Configuration.shared.GITHUB_CALLBACK_URL.absoluteString),
             URLQueryItem(name: "scope", value: Self.scopes.joined(separator: " ")),
             URLQueryItem(name: "state", value: self.state.uuidString)
         ]
@@ -36,52 +37,46 @@ class AuthenticationService: ObservableObject {
         return URL(scheme: "https", host: "github.com", path: "/login/oauth/authorize", queryItems: queryItems)
     }
     
-    private func getAccessToken(for code: String, _ completion: @escaping (Result<AccessToken, Error>) -> Void) {
+    private func getAccessToken(for code: String) -> AnyPublisher<AccessToken, Error> {
         let queryItems = [
-            URLQueryItem(name: "client_id", value: Configuration.shared.githubClientId),
-            URLQueryItem(name: "client_secret", value: Configuration.shared.githubClientSecret),
+            URLQueryItem(name: "client_id", value: Configuration.shared.GITHUB_CLIENT_ID),
+            URLQueryItem(name: "client_secret", value: Configuration.shared.GITHUB_CLIENT_SECRET),
             URLQueryItem(name: "code", value: code),
             URLQueryItem(name: "state", value: self.state.uuidString)
         ]
         
         let url = URL(scheme: "https", host: "github.com", path: "/login/oauth/access_token", queryItems: queryItems)!
-                
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        self.urlSession.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(.failure(error ?? AuthenticationError.dataTaskFailure))
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            let result = Result {
-                try jsonDecoder.decode(AccessToken.self, from: data)
-            }
-            
-            completion(result)
-        }.resume()
+        let request = URLRequest(
+            url: url,
+            httpMethod: .post,
+            httpHeaders: ["Accept": "application/json"]
+        )
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        return self.urlSession.dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: AccessToken.self, decoder: decoder)
+            .eraseToAnyPublisher()
     }
     
-    func onRedirect(from url: URL, _ completion: @escaping (Result<AccessToken, Error>) -> Void) {
+    func getAccessToken(onRedirectFrom url: URL) -> AnyPublisher<AccessToken, Error> {
         guard
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
             let code = components.queryItems?.first(where: { $0.name == "code" })?.value,
             let receivedState = components.queryItems?.first(where: { $0.name == "state" })?.value
         else {
-            completion(.failure(AuthenticationError.invalidUrl(url)))
-            return
+            return Fail(error: AuthenticationError.invalidUrl(url))
+                .eraseToAnyPublisher()
         }
         
         guard self.state.uuidString == receivedState else {
-            completion(.failure(AuthenticationError.stateMismatch(expected: self.state.uuidString, actual: receivedState)))
-            return
+            return Fail(error: AuthenticationError.stateMismatch(expected: self.state.uuidString, actual: receivedState))
+                .eraseToAnyPublisher()
         }
         
-        self.getAccessToken(for: code, completion)
+        return self.getAccessToken(for: code)
     }
 }

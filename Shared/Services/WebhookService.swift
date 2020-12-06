@@ -6,97 +6,101 @@
 //
 
 import Foundation
-
-enum NetworkError: Error {
-    case noData
-}
+import Combine
 
 struct AllowedTypes: Codable {
     let allowedTypes: [WebhookEvent.EventType]
 }
 
 class DummyWebhookService: WebhookService {
+    private static let event = WebhookEvent(
+        eventType: .issueAssigned,
+        repoName: "instantish / instantish",
+        number: 1580,
+        title: "Updated next.JS to v10 & Removed `server.js` & Removed unused dependencies",
+        description: "@richardrobinson0924 created this pull request",
+        avatarUrl: URL(string: "https://avatars3.githubusercontent.com/u/16073505?s=400&u=ca79b02893d6e10fab35e3ba1e593115da64e7ac&v=4")!,
+        timestamp: Date().addingTimeInterval(-300),
+        url: URL(string: "https://www.apple.com")!
+    )
+    
+    private static let user = WebhookUser(
+        githubId: 1,
+        deviceTokens: [],
+        latestEvent: event,
+        allowedTypes: [.issueAssigned, .issueOpened, .prMerged]
+    )
+    
     override func addUser(_ user: WebhookUser) {
     }
     
-    override func getAllowedEventTypes(forUserWithId id: Int, _ completion: @escaping (Result<[WebhookEvent.EventType], Error>) -> Void) {
-        completion(.success([.issueAssigned, .prMerged, .prReviewed]))
+    override func getUser(forUserWithId id: Int) -> AnyPublisher<WebhookUser, Error> {
+        return Just(Self.user)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
     
-    override func setAllowedEventTypes(_ allowedEventTypes: [WebhookEvent.EventType], forUserWithId id: Int) {
-    }
-    
-    override func getLatestEvent(forUserWithId id: Int, _ completion: @escaping (Result<WebhookEvent, Error>) -> Void) {
+    override func updateUser(withAllowedEventTypes allowedEventTypes: [WebhookEvent.EventType], forUserWithId id: Int) {
     }
 }
 
 class WebhookService: ObservableObject {
     private let urlSession = URLSession.shared
+    
+    private var jsonDecoder: JSONDecoder {
+        let res = JSONDecoder()
+        res.keyDecodingStrategy = .convertFromSnakeCase
+        res.dateDecodingStrategy = .iso8601
+        return res
+    }
+    
+    private var jsonEncoder: JSONEncoder {
+        let res = JSONEncoder()
+        res.dateEncodingStrategy = .iso8601
+        res.keyEncodingStrategy = .convertToSnakeCase
+        return res
+    }
 
     func addUser(_ user: WebhookUser) {
-        let url = URL(scheme: "https", host: "push-request-server.herokuapp.com", path: "/users/new")!
+        let url = Configuration.shared.SERVER_URL.appendingPathComponent("/users")
         
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = try! JSONEncoder().encode(user)
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let request = URLRequest(
+            url: url,
+            httpMethod: .post,
+            httpBody: try! self.jsonEncoder.encode(user),
+            httpHeaders: [
+                "Content-Type": "application/json",
+            ]
+        )
         
-        self.urlSession.dataTask(with: urlRequest).resume()
+        self.urlSession.dataTask(with: request).resume()
     }
     
-    func getAllowedEventTypes(forUserWithId id: Int, _ completion: @escaping (Result<[WebhookEvent.EventType], Error>) -> Void) {
-        let url = URL(scheme: "https", host: "push-request-server.herokuapp.com", path: "/users/\(id)/allowed_types")!
+    func getUser(forUserWithId id: Int) -> AnyPublisher<WebhookUser, Error> {
+        let url = Configuration.shared.SERVER_URL.appendingPathComponent("/users")
         
-        self.urlSession.dataTask(with: url) { (data, response, error) in
-            guard let data = data, error == nil else {
-                completion(.failure(error ?? NetworkError.noData))
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            
-            let result = Result { () -> [WebhookEvent.EventType] in
-                let decoded = try jsonDecoder.decode(AllowedTypes.self, from: data)
-                return decoded.allowedTypes
-            }
-            
-            completion(result)
-        }.resume()
+        let request = URLRequest(url: url, httpHeaders: ["Authorization": String(id)])
+        
+        return self.urlSession.dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: WebhookUser.self, decoder: self.jsonDecoder)
+            .eraseToAnyPublisher()
     }
     
-    func setAllowedEventTypes(_ allowedEventTypes: [WebhookEvent.EventType], forUserWithId id: Int) {
-        let url = URL(scheme: "https", host: "push-request-server.herokuapp.com", path: "/users/\(id)/allowed_types")!
+    func updateUser(withAllowedEventTypes allowedEventTypes: [WebhookEvent.EventType], forUserWithId id: Int) {
+        let url = Configuration.shared.SERVER_URL.appendingPathComponent("/users")
         let data = AllowedTypes(allowedTypes: allowedEventTypes)
         
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = try! JSONEncoder().encode(data)
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let request = URLRequest(
+            url: url,
+            httpMethod: .patch,
+            httpBody: try! self.jsonEncoder.encode(data),
+            httpHeaders: [
+                "Content-Type": "application/json",
+                "Authorization": String(id)
+            ]
+        )
         
-        self.urlSession.dataTask(with: urlRequest).resume()
-    }
-    
-    func getLatestEvent(forUserWithId id: Int, _ completion: @escaping (Result<WebhookEvent, Error>) -> Void) {
-        let url = URL(scheme: "https", host: "push-request-server.herokuapp.com", path: "/users/latest-event")!
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.setValue(String(id), forHTTPHeaderField: "Authorization")
-        
-        
-        self.urlSession.dataTask(with: urlRequest) { (data, response, error) in
-            guard let data = data, error == nil else {
-                completion(.failure(error ?? NetworkError.noData))
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.dateDecodingStrategy = .iso8601
-            
-            let result = Result {
-                try jsonDecoder.decode(WebhookEvent.self, from: data)
-            }
-            
-            completion(result)
-        }.resume()
+        self.urlSession.dataTask(with: request).resume()
     }
 }

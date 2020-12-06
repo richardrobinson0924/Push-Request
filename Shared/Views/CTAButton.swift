@@ -12,14 +12,6 @@ struct CTAButton: View {
     let label: String
     let action: () -> Void
     
-    var color: Color {
-        #if os(iOS)
-        return Color(.systemBackground)
-        #else
-        return Color(.windowBackgroundColor)
-        #endif
-    }
-    
     private var overlay: some View {
         HStack(spacing: 10) {
             self.image
@@ -30,7 +22,7 @@ struct CTAButton: View {
             Text(label)
                 .font(.body)
                 .fontWeight(.medium)
-                .foregroundColor(color)
+                .foregroundColor(Color(.systemBackground))
         }
     }
     

@@ -25,3 +25,21 @@ extension URL {
         }
     }
 }
+
+extension URLRequest {
+    enum HTTPMethod: String {
+        case get = "GET"
+        case patch = "PATCH"
+        case post = "POST"
+    }
+    
+    init(url: URL, httpMethod: HTTPMethod = .get, httpBody: Data? = nil, httpHeaders: [String : String] = [:]) {
+        self.init(url: url)
+        self.httpMethod = httpMethod.rawValue
+        self.httpBody = httpBody
+    
+        for header in httpHeaders {
+            self.setValue(header.value, forHTTPHeaderField: header.key)
+        }
+    }
+}

@@ -11,11 +11,7 @@ import WidgetKit
 
 @main
 struct Push_RequestApp: App {
-    #if os(iOS)
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
-    #else
-    @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
-    #endif
     
     var body: some Scene {
         WindowGroup {
@@ -24,64 +20,40 @@ struct Push_RequestApp: App {
     }
 }
 
-class UniversalAppDelegate: NSObject {
+class AppDelegate: NSObject, UIApplicationDelegate {
     let webhookService = WebhookService()
     let githubService = GithubService()
-
-    func application(didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        let accessToken = UserDefaults.group!.string(forKey: "accessToken")!
-                
-        githubService.getUser(from: accessToken) { (result) in
-            switch result {
-            case .success(let ghUser):
-                UserDefaults.group!.set(ghUser.id, forKey: "githubId")
-                
-                let webhookUser = WebhookUser(
-                    githubId: ghUser.id,
-                    deviceToken: deviceTokenString,
-                    events: [],
-                    allowedTypes: WebhookEvent.EventType.allCases
-                )
-                self.webhookService.addUser(webhookUser)
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
     
-    func application(didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (Bool) -> Void) {
-        print("received new data")
-        
-        let id = UserDefaults.group!.integer(forKey: "githubId")
-        guard id != 0 else {
-            completionHandler(false)
-            return
-        }
-        
-        self.webhookService.getLatestEvent(forUserWithId: id) { (result) in
-            switch result {
-            case .success(let event):
-                try! UserDefaults.group!.append(event, toArrayWithKey: "events")
-                WidgetCenter.shared.reloadAllTimelines()
-                completionHandler(true)
-                
-            case .failure(_):
-                completionHandler(false)
-            }
-        }
-    }
-}
-
-#if os(iOS)
-class AppDelegate: UniversalAppDelegate, UIApplicationDelegate {
+    var cancellables = Set<AnyCancellable>()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        super.application(didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        let accessToken = UserDefaults.group.string(forKey: "accessToken")!
+        
+        let receiveValue = { (ghUser: GithubUser) in
+            UserDefaults.group.set(ghUser.id, forKey: "githubId")
+            
+            let webhookUser = WebhookUser(
+                githubId: ghUser.id,
+                deviceTokens: [deviceTokenString],
+                latestEvent: nil,
+                allowedTypes: WebhookEvent.EventType.allCases
+            )
+            
+            self.webhookService.addUser(webhookUser)
+        }
+        
+        let receiveCompletion = { (error: Subscribers.Completion<Error>) in
+            print(error)
+        }
+        
+        self.githubService.getUser(from: accessToken)
+            .sink(receiveCompletion: receiveCompletion, receiveValue: receiveValue)
+            .store(in: &cancellables)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -89,23 +61,34 @@ class AppDelegate: UniversalAppDelegate, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        super.application(didReceiveRemoteNotification: userInfo) { (didSucceed) in
-            completionHandler(didSucceed ? .newData : .failed)
+        
+        print("received new data")
+        
+        let id = UserDefaults.group.integer(forKey: "githubId")
+        guard id != 0 else {
+            completionHandler(.failed)
+            return
         }
+        
+        let receiveValue = { (event: WebhookEvent?) in
+            try! EventController.shared.append(event: event!)
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+        
+        let receiveCompletion = { (completion: Subscribers.Completion<Error>) in
+            switch completion {
+            case .failure(let error):
+                print(error)
+                completionHandler(.failed)
+                
+            case .finished:
+                completionHandler(.newData)
+            }
+        }
+        
+        self.webhookService.getUser(forUserWithId: id)
+            .map(\.latestEvent)
+            .sink(receiveCompletion: receiveCompletion, receiveValue: receiveValue)
+            .store(in: &cancellables)
     }
 }
-#else
-class AppDelegate: UniversalAppDelegate, NSApplicationDelegate {
-    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        super.application(didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-    }
-    
-    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print(error.localizedDescription)
-    }
-    
-    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
-        super.application(didReceiveRemoteNotification: userInfo) { _ in }
-    }
-}
-#endif

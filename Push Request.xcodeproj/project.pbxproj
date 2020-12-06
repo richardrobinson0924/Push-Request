@@ -3,63 +3,38 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07207E9D256B3100002DDC67 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074CA6D6256627C5004E57EF /* Color+Extensions.swift */; };
-		07207EA4256B3105002DDC67 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F90017256A27F500A75A84 /* UserDefaults+Extensions.swift */; };
-		07207EAB256B3109002DDC67 /* WebhookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B842564EA4400035051 /* WebhookUser.swift */; };
 		07207EEF256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */; };
-		07207EF0256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */; };
 		07215537256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215536256F9C57001B73AF /* AllowedEventTypesView.swift */; };
-		07215538256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215536256F9C57001B73AF /* AllowedEventTypesView.swift */; };
-		07215540256F9D22001B73AF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721553F256F9D22001B73AF /* Settings.swift */; };
-		07215541256F9D22001B73AF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0721553F256F9D22001B73AF /* Settings.swift */; };
 		07215549256FA945001B73AF /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215548256FA945001B73AF /* CTAButton.swift */; };
-		0721554A256FA945001B73AF /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215548256FA945001B73AF /* CTAButton.swift */; };
 		07215552256FA98D001B73AF /* AuthorizeAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215551256FA98D001B73AF /* AuthorizeAppView.swift */; };
-		07215553256FA98D001B73AF /* AuthorizeAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07215551256FA98D001B73AF /* AuthorizeAppView.swift */; };
 		072E2B282564CDBE00035051 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B272564CDBE00035051 /* Tests_iOS.swift */; };
-		072E2B332564CDBE00035051 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B322564CDBE00035051 /* Tests_macOS.swift */; };
 		072E2B352564CDBE00035051 /* Push_RequestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B0C2564CDBB00035051 /* Push_RequestApp.swift */; };
-		072E2B362564CDBE00035051 /* Push_RequestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B0C2564CDBB00035051 /* Push_RequestApp.swift */; };
 		072E2B372564CDBE00035051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B0D2564CDBB00035051 /* ContentView.swift */; };
-		072E2B382564CDBE00035051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B0D2564CDBB00035051 /* ContentView.swift */; };
 		072E2B392564CDBE00035051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072E2B0E2564CDBE00035051 /* Assets.xcassets */; };
-		072E2B3A2564CDBE00035051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072E2B0E2564CDBE00035051 /* Assets.xcassets */; };
 		072E2B4F2564CEB200035051 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B4E2564CEB200035051 /* AuthenticationService.swift */; };
-		072E2B502564CEB200035051 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B4E2564CEB200035051 /* AuthenticationService.swift */; };
 		072E2B5A2564D28300035051 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B592564D28300035051 /* Configuration.swift */; };
-		072E2B5B2564D28300035051 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B592564D28300035051 /* Configuration.swift */; };
-		072E2B612564D41B00035051 /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 072E2B602564D41B00035051 /* Preferences.plist */; };
-		072E2B622564D41B00035051 /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 072E2B602564D41B00035051 /* Preferences.plist */; };
 		072E2B6C2564E2B300035051 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B6B2564E2B300035051 /* URL+Extensions.swift */; };
-		072E2B6D2564E2B300035051 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B6B2564E2B300035051 /* URL+Extensions.swift */; };
 		072E2B7E2564E89200035051 /* GithubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B7D2564E89200035051 /* GithubUser.swift */; };
-		072E2B7F2564E89200035051 /* GithubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B7D2564E89200035051 /* GithubUser.swift */; };
 		072E2B852564EA4400035051 /* WebhookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B842564EA4400035051 /* WebhookUser.swift */; };
-		072E2B862564EA4400035051 /* WebhookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B842564EA4400035051 /* WebhookUser.swift */; };
 		072E2B8C2564EAF100035051 /* WebhookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B8B2564EAF100035051 /* WebhookService.swift */; };
-		072E2B8D2564EAF100035051 /* WebhookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B8B2564EAF100035051 /* WebhookService.swift */; };
 		074CA6D7256627C5004E57EF /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074CA6D6256627C5004E57EF /* Color+Extensions.swift */; };
-		074CA6D8256627C5004E57EF /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074CA6D6256627C5004E57EF /* Color+Extensions.swift */; };
+		079895CE257B829F00CF25D7 /* WebhookProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079895CD257B829F00CF25D7 /* WebhookProvider.swift */; };
+		079895D3257B885B00CF25D7 /* AuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079895D2257B885B00CF25D7 /* AuthenticationProvider.swift */; };
+		079895D8257B898E00CF25D7 /* GithubProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079895D7257B898E00CF25D7 /* GithubProvider.swift */; };
+		079895E1257BFD3200CF25D7 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079895E0257BFD3200CF25D7 /* EventController.swift */; };
+		079895E2257BFD3200CF25D7 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079895E0257BFD3200CF25D7 /* EventController.swift */; };
 		07F90001256A276D00A75A84 /* iOS_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F90000256A276D00A75A84 /* iOS_Widget.swift */; };
 		07F90003256A277000A75A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F90002256A277000A75A84 /* Assets.xcassets */; };
 		07F90007256A277000A75A84 /* iOS WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 07F9FFF9256A276D00A75A84 /* iOS WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		07F90018256A27F500A75A84 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F90017256A27F500A75A84 /* UserDefaults+Extensions.swift */; };
-		07F90019256A27F500A75A84 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F90017256A27F500A75A84 /* UserDefaults+Extensions.swift */; };
 		07F9001F256A28AC00A75A84 /* WebhookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072E2B842564EA4400035051 /* WebhookUser.swift */; };
 		07F90025256A297A00A75A84 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F90017256A27F500A75A84 /* UserDefaults+Extensions.swift */; };
-		07F90030256A55B300A75A84 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9FFFB256A276D00A75A84 /* WidgetKit.framework */; };
-		07F90031256A55B300A75A84 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9FFFD256A276D00A75A84 /* SwiftUI.framework */; };
-		07F90034256A55B300A75A84 /* macOS_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F90033256A55B300A75A84 /* macOS_Widget.swift */; };
-		07F90036256A55B500A75A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F90035256A55B500A75A84 /* Assets.xcassets */; };
-		07F9003B256A55B500A75A84 /* macOS WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 07F9002F256A55B300A75A84 /* macOS WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		07F90046256A7AB200A75A84 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074CA6D6256627C5004E57EF /* Color+Extensions.swift */; };
-		07F9004F256A7CE700A75A84 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 07F9004E256A7CE700A75A84 /* URLImage */; };
 		07F9FFEF256A1BE800A75A84 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9FFEE256A1BE800A75A84 /* GitHubService.swift */; };
-		07F9FFF0256A1BE800A75A84 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9FFEE256A1BE800A75A84 /* GitHubService.swift */; };
 		07F9FFFC256A276D00A75A84 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9FFFB256A276D00A75A84 /* WidgetKit.framework */; };
 		07F9FFFE256A276D00A75A84 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9FFFD256A276D00A75A84 /* SwiftUI.framework */; };
 /* End PBXBuildFile section */
@@ -72,26 +47,12 @@
 			remoteGlobalIDString = 072E2B122564CDBE00035051;
 			remoteInfo = "Push Request (iOS)";
 		};
-		072E2B2F2564CDBE00035051 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 072E2B072564CDBB00035051 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 072E2B1A2564CDBE00035051;
-			remoteInfo = "Push Request (macOS)";
-		};
 		07F90005256A277000A75A84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 072E2B072564CDBB00035051 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 07F9FFF8256A276D00A75A84;
 			remoteInfo = "iOS WidgetExtension";
-		};
-		07F90039256A55B500A75A84 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 072E2B072564CDBB00035051 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 07F9002E256A55B300A75A84;
-			remoteInfo = "macOS WidgetExtension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -107,23 +68,11 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F9003F256A55B500A75A84 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				07F9003B256A55B500A75A84 /* macOS WidgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGitHubView.swift; sourceTree = "<group>"; };
 		07215536256F9C57001B73AF /* AllowedEventTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowedEventTypesView.swift; sourceTree = "<group>"; };
-		0721553F256F9D22001B73AF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		07215548256FA945001B73AF /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
 		07215551256FA98D001B73AF /* AuthorizeAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeAppView.swift; sourceTree = "<group>"; };
 		072E2B0C2564CDBB00035051 /* Push_RequestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Push_RequestApp.swift; sourceTree = "<group>"; };
@@ -131,34 +80,26 @@
 		072E2B0E2564CDBE00035051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		072E2B132564CDBE00035051 /* Push Request.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Push Request.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		072E2B162564CDBE00035051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		072E2B1B2564CDBE00035051 /* Push Request.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Push Request.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		072E2B1D2564CDBE00035051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		072E2B1E2564CDBE00035051 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		072E2B232564CDBE00035051 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		072E2B272564CDBE00035051 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		072E2B292564CDBE00035051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		072E2B2E2564CDBE00035051 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		072E2B322564CDBE00035051 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		072E2B342564CDBE00035051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		072E2B4D2564CE1400035051 /* Push Request.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Push Request.entitlements"; sourceTree = "<group>"; };
 		072E2B4E2564CEB200035051 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		072E2B592564D28300035051 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		072E2B602564D41B00035051 /* Preferences.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Preferences.plist; sourceTree = "<group>"; };
 		072E2B6B2564E2B300035051 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		072E2B7D2564E89200035051 /* GithubUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubUser.swift; sourceTree = "<group>"; };
 		072E2B842564EA4400035051 /* WebhookUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookUser.swift; sourceTree = "<group>"; };
 		072E2B8B2564EAF100035051 /* WebhookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookService.swift; sourceTree = "<group>"; };
 		074CA6D6256627C5004E57EF /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		079895CD257B829F00CF25D7 /* WebhookProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookProvider.swift; sourceTree = "<group>"; };
+		079895D2257B885B00CF25D7 /* AuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProvider.swift; sourceTree = "<group>"; };
+		079895D7257B898E00CF25D7 /* GithubProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubProvider.swift; sourceTree = "<group>"; };
+		079895E0257BFD3200CF25D7 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		07F90000256A276D00A75A84 /* iOS_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Widget.swift; sourceTree = "<group>"; };
 		07F90002256A277000A75A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07F90004256A277000A75A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07F90011256A27D300A75A84 /* iOS WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		07F90017256A27F500A75A84 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
-		07F9002F256A55B300A75A84 /* macOS WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "macOS WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F90033256A55B300A75A84 /* macOS_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS_Widget.swift; sourceTree = "<group>"; };
-		07F90035256A55B500A75A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		07F90037256A55B500A75A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07F90038256A55B500A75A84 /* macOS_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS_Widget.entitlements; sourceTree = "<group>"; };
 		07F9FFEE256A1BE800A75A84 /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		07F9FFF9256A276D00A75A84 /* iOS WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "iOS WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F9FFFB256A276D00A75A84 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -173,33 +114,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		072E2B182564CDBE00035051 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		072E2B202564CDBE00035051 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		072E2B2B2564CDBE00035051 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		07F9002C256A55B300A75A84 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				07F90031256A55B300A75A84 /* SwiftUI.framework in Frameworks */,
-				07F90030256A55B300A75A84 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F9FFFE256A276D00A75A84 /* SwiftUI.framework in Frameworks */,
-				07F9004F256A7CE700A75A84 /* URLImage in Frameworks */,
 				07F9FFFC256A276D00A75A84 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,11 +140,8 @@
 				072E2B4D2564CE1400035051 /* Push Request.entitlements */,
 				072E2B0B2564CDBB00035051 /* Shared */,
 				072E2B152564CDBE00035051 /* iOS */,
-				072E2B1C2564CDBE00035051 /* macOS */,
 				072E2B262564CDBE00035051 /* Tests iOS */,
-				072E2B312564CDBE00035051 /* Tests macOS */,
 				07F9FFFF256A276D00A75A84 /* iOS Widget */,
-				07F90032256A55B300A75A84 /* macOS Widget */,
 				07F9FFFA256A276D00A75A84 /* Frameworks */,
 				072E2B142564CDBE00035051 /* Products */,
 			);
@@ -236,6 +150,8 @@
 		072E2B0B2564CDBB00035051 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				079895DF257BFD1F00CF25D7 /* Controllers */,
+				079895CC257B827200CF25D7 /* Providers */,
 				074CA6D5256627B4004E57EF /* Extensions */,
 				07D8739D256624860023B547 /* Views */,
 				07D8739C2566246D0023B547 /* Models */,
@@ -243,7 +159,6 @@
 				072E2B0C2564CDBB00035051 /* Push_RequestApp.swift */,
 				072E2B0E2564CDBE00035051 /* Assets.xcassets */,
 				072E2B592564D28300035051 /* Configuration.swift */,
-				072E2B602564D41B00035051 /* Preferences.plist */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -252,11 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				072E2B132564CDBE00035051 /* Push Request.app */,
-				072E2B1B2564CDBE00035051 /* Push Request.app */,
 				072E2B232564CDBE00035051 /* Tests iOS.xctest */,
-				072E2B2E2564CDBE00035051 /* Tests macOS.xctest */,
 				07F9FFF9256A276D00A75A84 /* iOS WidgetExtension.appex */,
-				07F9002F256A55B300A75A84 /* macOS WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,15 +181,6 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		072E2B1C2564CDBE00035051 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				072E2B1D2564CDBE00035051 /* Info.plist */,
-				072E2B1E2564CDBE00035051 /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
 		072E2B262564CDBE00035051 /* Tests iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,15 +188,6 @@
 				072E2B292564CDBE00035051 /* Info.plist */,
 			);
 			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		072E2B312564CDBE00035051 /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				072E2B322564CDBE00035051 /* Tests_macOS.swift */,
-				072E2B342564CDBE00035051 /* Info.plist */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 		074CA6D5256627B4004E57EF /* Extensions */ = {
@@ -304,6 +198,24 @@
 				07F90017256A27F500A75A84 /* UserDefaults+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		079895CC257B827200CF25D7 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				079895CD257B829F00CF25D7 /* WebhookProvider.swift */,
+				079895D2257B885B00CF25D7 /* AuthenticationProvider.swift */,
+				079895D7257B898E00CF25D7 /* GithubProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		079895DF257BFD1F00CF25D7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				079895E0257BFD3200CF25D7 /* EventController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		07D873972566243E0023B547 /* Services */ = {
@@ -329,24 +241,12 @@
 			isa = PBXGroup;
 			children = (
 				072E2B0D2564CDBB00035051 /* ContentView.swift */,
-				0721553F256F9D22001B73AF /* Settings.swift */,
 				07215536256F9C57001B73AF /* AllowedEventTypesView.swift */,
 				07207EEE256B9CD7002DDC67 /* SignInWithGitHubView.swift */,
 				07215551256FA98D001B73AF /* AuthorizeAppView.swift */,
 				07215548256FA945001B73AF /* CTAButton.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		07F90032256A55B300A75A84 /* macOS Widget */ = {
-			isa = PBXGroup;
-			children = (
-				07F90033256A55B300A75A84 /* macOS_Widget.swift */,
-				07F90035256A55B500A75A84 /* Assets.xcassets */,
-				07F90037256A55B500A75A84 /* Info.plist */,
-				07F90038256A55B500A75A84 /* macOS_Widget.entitlements */,
-			);
-			path = "macOS Widget";
 			sourceTree = "<group>";
 		};
 		07F9FFFA256A276D00A75A84 /* Frameworks */ = {
@@ -386,27 +286,10 @@
 				07F90006256A277000A75A84 /* PBXTargetDependency */,
 			);
 			name = "Push Request (iOS)";
+			packageProductDependencies = (
+			);
 			productName = "Push Request (iOS)";
 			productReference = 072E2B132564CDBE00035051 /* Push Request.app */;
-			productType = "com.apple.product-type.application";
-		};
-		072E2B1A2564CDBE00035051 /* Push Request (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 072E2B402564CDBE00035051 /* Build configuration list for PBXNativeTarget "Push Request (macOS)" */;
-			buildPhases = (
-				072E2B172564CDBE00035051 /* Sources */,
-				072E2B182564CDBE00035051 /* Frameworks */,
-				072E2B192564CDBE00035051 /* Resources */,
-				07F9003F256A55B500A75A84 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				07F9003A256A55B500A75A84 /* PBXTargetDependency */,
-			);
-			name = "Push Request (macOS)";
-			productName = "Push Request (macOS)";
-			productReference = 072E2B1B2564CDBE00035051 /* Push Request.app */;
 			productType = "com.apple.product-type.application";
 		};
 		072E2B222564CDBE00035051 /* Tests iOS */ = {
@@ -427,41 +310,6 @@
 			productReference = 072E2B232564CDBE00035051 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		072E2B2D2564CDBE00035051 /* Tests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 072E2B462564CDBE00035051 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
-			buildPhases = (
-				072E2B2A2564CDBE00035051 /* Sources */,
-				072E2B2B2564CDBE00035051 /* Frameworks */,
-				072E2B2C2564CDBE00035051 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				072E2B302564CDBE00035051 /* PBXTargetDependency */,
-			);
-			name = "Tests macOS";
-			productName = "Tests macOS";
-			productReference = 072E2B2E2564CDBE00035051 /* Tests macOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		07F9002E256A55B300A75A84 /* macOS WidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 07F9003C256A55B500A75A84 /* Build configuration list for PBXNativeTarget "macOS WidgetExtension" */;
-			buildPhases = (
-				07F9002B256A55B300A75A84 /* Sources */,
-				07F9002C256A55B300A75A84 /* Frameworks */,
-				07F9002D256A55B300A75A84 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "macOS WidgetExtension";
-			productName = "macOS WidgetExtension";
-			productReference = 07F9002F256A55B300A75A84 /* macOS WidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		07F9FFF8256A276D00A75A84 /* iOS WidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F90008256A277000A75A84 /* Build configuration list for PBXNativeTarget "iOS WidgetExtension" */;
@@ -476,7 +324,6 @@
 			);
 			name = "iOS WidgetExtension";
 			packageProductDependencies = (
-				07F9004E256A7CE700A75A84 /* URLImage */,
 			);
 			productName = "iOS WidgetExtension";
 			productReference = 07F9FFF9256A276D00A75A84 /* iOS WidgetExtension.appex */;
@@ -494,19 +341,9 @@
 					072E2B122564CDBE00035051 = {
 						CreatedOnToolsVersion = 12.2;
 					};
-					072E2B1A2564CDBE00035051 = {
-						CreatedOnToolsVersion = 12.2;
-					};
 					072E2B222564CDBE00035051 = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = 072E2B122564CDBE00035051;
-					};
-					072E2B2D2564CDBE00035051 = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 072E2B1A2564CDBE00035051;
-					};
-					07F9002E256A55B300A75A84 = {
-						CreatedOnToolsVersion = 12.2;
 					};
 					07F9FFF8256A276D00A75A84 = {
 						CreatedOnToolsVersion = 12.2;
@@ -523,18 +360,14 @@
 			);
 			mainGroup = 072E2B062564CDBB00035051;
 			packageReferences = (
-				07F9004D256A7CE700A75A84 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 072E2B142564CDBE00035051 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				072E2B122564CDBE00035051 /* Push Request (iOS) */,
-				072E2B1A2564CDBE00035051 /* Push Request (macOS) */,
 				072E2B222564CDBE00035051 /* Tests iOS */,
-				072E2B2D2564CDBE00035051 /* Tests macOS */,
 				07F9FFF8256A276D00A75A84 /* iOS WidgetExtension */,
-				07F9002E256A55B300A75A84 /* macOS WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -545,16 +378,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				072E2B392564CDBE00035051 /* Assets.xcassets in Resources */,
-				072E2B612564D41B00035051 /* Preferences.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		072E2B192564CDBE00035051 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				072E2B3A2564CDBE00035051 /* Assets.xcassets in Resources */,
-				072E2B622564D41B00035051 /* Preferences.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,21 +385,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		072E2B2C2564CDBE00035051 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		07F9002D256A55B300A75A84 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				07F90036256A55B500A75A84 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,41 +407,21 @@
 				072E2B4F2564CEB200035051 /* AuthenticationService.swift in Sources */,
 				072E2B8C2564EAF100035051 /* WebhookService.swift in Sources */,
 				072E2B5A2564D28300035051 /* Configuration.swift in Sources */,
-				07215540256F9D22001B73AF /* Settings.swift in Sources */,
 				07215549256FA945001B73AF /* CTAButton.swift in Sources */,
 				072E2B852564EA4400035051 /* WebhookUser.swift in Sources */,
 				072E2B6C2564E2B300035051 /* URL+Extensions.swift in Sources */,
 				07215552256FA98D001B73AF /* AuthorizeAppView.swift in Sources */,
 				072E2B7E2564E89200035051 /* GithubUser.swift in Sources */,
 				07207EEF256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */,
+				079895D8257B898E00CF25D7 /* GithubProvider.swift in Sources */,
 				072E2B372564CDBE00035051 /* ContentView.swift in Sources */,
+				079895CE257B829F00CF25D7 /* WebhookProvider.swift in Sources */,
 				07F90018256A27F500A75A84 /* UserDefaults+Extensions.swift in Sources */,
 				074CA6D7256627C5004E57EF /* Color+Extensions.swift in Sources */,
 				072E2B352564CDBE00035051 /* Push_RequestApp.swift in Sources */,
+				079895D3257B885B00CF25D7 /* AuthenticationProvider.swift in Sources */,
+				079895E1257BFD3200CF25D7 /* EventController.swift in Sources */,
 				07215537256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		072E2B172564CDBE00035051 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				07F9FFF0256A1BE800A75A84 /* GitHubService.swift in Sources */,
-				072E2B502564CEB200035051 /* AuthenticationService.swift in Sources */,
-				072E2B8D2564EAF100035051 /* WebhookService.swift in Sources */,
-				072E2B5B2564D28300035051 /* Configuration.swift in Sources */,
-				07215541256F9D22001B73AF /* Settings.swift in Sources */,
-				0721554A256FA945001B73AF /* CTAButton.swift in Sources */,
-				072E2B862564EA4400035051 /* WebhookUser.swift in Sources */,
-				072E2B6D2564E2B300035051 /* URL+Extensions.swift in Sources */,
-				07215553256FA98D001B73AF /* AuthorizeAppView.swift in Sources */,
-				072E2B7F2564E89200035051 /* GithubUser.swift in Sources */,
-				07207EF0256B9CD7002DDC67 /* SignInWithGitHubView.swift in Sources */,
-				072E2B382564CDBE00035051 /* ContentView.swift in Sources */,
-				07F90019256A27F500A75A84 /* UserDefaults+Extensions.swift in Sources */,
-				074CA6D8256627C5004E57EF /* Color+Extensions.swift in Sources */,
-				072E2B362564CDBE00035051 /* Push_RequestApp.swift in Sources */,
-				07215538256F9C57001B73AF /* AllowedEventTypesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,31 +433,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		072E2B2A2564CDBE00035051 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				072E2B332564CDBE00035051 /* Tests_macOS.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		07F9002B256A55B300A75A84 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				07F90034256A55B300A75A84 /* macOS_Widget.swift in Sources */,
-				07207EA4256B3105002DDC67 /* UserDefaults+Extensions.swift in Sources */,
-				07207EAB256B3109002DDC67 /* WebhookUser.swift in Sources */,
-				07207E9D256B3100002DDC67 /* Color+Extensions.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		07F9FFF5256A276D00A75A84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				07F9001F256A28AC00A75A84 /* WebhookUser.swift in Sources */,
 				07F90025256A297A00A75A84 /* UserDefaults+Extensions.swift in Sources */,
+				079895E2257BFD3200CF25D7 /* EventController.swift in Sources */,
 				07F90001256A276D00A75A84 /* iOS_Widget.swift in Sources */,
 				07F90046256A7AB200A75A84 /* Color+Extensions.swift in Sources */,
 			);
@@ -683,20 +453,10 @@
 			target = 072E2B122564CDBE00035051 /* Push Request (iOS) */;
 			targetProxy = 072E2B242564CDBE00035051 /* PBXContainerItemProxy */;
 		};
-		072E2B302564CDBE00035051 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 072E2B1A2564CDBE00035051 /* Push Request (macOS) */;
-			targetProxy = 072E2B2F2564CDBE00035051 /* PBXContainerItemProxy */;
-		};
 		07F90006256A277000A75A84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 07F9FFF8256A276D00A75A84 /* iOS WidgetExtension */;
 			targetProxy = 07F90005256A277000A75A84 /* PBXContainerItemProxy */;
-		};
-		07F9003A256A55B500A75A84 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 07F9002E256A55B300A75A84 /* macOS WidgetExtension */;
-			targetProxy = 07F90039256A55B500A75A84 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -752,6 +512,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -806,6 +567,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -834,7 +596,7 @@
 				PRODUCT_NAME = "Push Request";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -858,60 +620,8 @@
 				PRODUCT_NAME = "Push Request";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		072E2B412564CDBE00035051 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = DS63W44KSD;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.richardrobinson.Push-Request";
-				PRODUCT_NAME = "Push Request";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		072E2B422564CDBE00035051 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = DS63W44KSD;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.richardrobinson.Push-Request";
-				PRODUCT_NAME = "Push Request";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -957,50 +667,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Push Request (iOS)";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		072E2B472564CDBE00035051 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = DS63W44KSD;
-				INFOPLIST_FILE = "Tests macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.richardrobinson.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Push Request (macOS)";
-			};
-			name = Debug;
-		};
-		072E2B482564CDBE00035051 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = DS63W44KSD;
-				INFOPLIST_FILE = "Tests macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.richardrobinson.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Push Request (macOS)";
 			};
 			name = Release;
 		};
@@ -1053,56 +719,6 @@
 			};
 			name = Release;
 		};
-		07F9003D256A55B500A75A84 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = "macOS Widget/macOS_Widget.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DS63W44KSD;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "macOS Widget/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.richardrobinson.Push-Request.macOS-Widget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		07F9003E256A55B500A75A84 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = "macOS Widget/macOS_Widget.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DS63W44KSD;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "macOS Widget/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.richardrobinson.Push-Request.macOS-Widget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1124,29 +740,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		072E2B402564CDBE00035051 /* Build configuration list for PBXNativeTarget "Push Request (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				072E2B412564CDBE00035051 /* Debug */,
-				072E2B422564CDBE00035051 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		072E2B432564CDBE00035051 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				072E2B442564CDBE00035051 /* Debug */,
 				072E2B452564CDBE00035051 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		072E2B462564CDBE00035051 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				072E2B472564CDBE00035051 /* Debug */,
-				072E2B482564CDBE00035051 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1160,35 +758,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07F9003C256A55B500A75A84 /* Build configuration list for PBXNativeTarget "macOS WidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				07F9003D256A55B500A75A84 /* Debug */,
-				07F9003E256A55B500A75A84 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		07F9004D256A7CE700A75A84 /* XCRemoteSwiftPackageReference "url-image" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.9;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		07F9004E256A7CE700A75A84 /* URLImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07F9004D256A7CE700A75A84 /* XCRemoteSwiftPackageReference "url-image" */;
-			productName = URLImage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 072E2B072564CDBB00035051 /* Project object */;
 }

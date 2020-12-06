@@ -27,8 +27,8 @@ struct WebhookEvent: Codable, Hashable {
 
 struct WebhookUser: Codable {
     let githubId: Int
-    let deviceToken: String
-    let events: [WebhookEvent]
+    let deviceTokens: [String]
+    let latestEvent: WebhookEvent?
     let allowedTypes: [WebhookEvent.EventType]
 }
 

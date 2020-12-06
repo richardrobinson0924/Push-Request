@@ -39,7 +39,7 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let events = UserDefaults.group!.array(WebhookEvent.self, forKey: "events")!
+        let events = try! EventController.shared.allEvents()
         assert(!events.isEmpty)
         
         load(events: events) { (result) in
@@ -71,7 +71,8 @@ struct EntryView: View {
         } else {
             switch self.widgetFamily {
             case .systemMedium:
-                MediumWidgetView(latestEvent: events.last!)
+                MediumWidgetView(event: events.last!.event, avatarData: events.last!.avatarData)
+                    .widgetURL(events.last!.event.url)
             default:
                 fatalError()
             }
@@ -80,10 +81,11 @@ struct EntryView: View {
 }
 
 struct MediumWidgetView : View {
-    let latestEvent: CellData
+    let event: WebhookEvent
+    let avatarData: Data
     
     var avatar: some View {
-        let uiImage = UIImage(data: latestEvent.avatarData)!
+        let uiImage = UIImage(data: avatarData)!
         return Image(uiImage: uiImage)
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -94,18 +96,18 @@ struct MediumWidgetView : View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 0) {
-                Image(latestEvent.event.eventType.iconName)
+                Image(event.eventType.iconName)
                     .resizable()
                     .frame(width: 22, height: 22)
                     .padding(.horizontal, 14)
-                    .foregroundColor(latestEvent.event.eventType.iconColor)
+                    .foregroundColor(event.eventType.iconColor)
                 
-                Text("\(latestEvent.event.repoName) #\(String(latestEvent.event.number))")
+                Text("\(event.repoName) #\(String(event.number))")
                     .font(.footnote)
             }
             .foregroundColor(.secondary)
             
-            Text(latestEvent.event.title)
+            Text(event.title)
                 .font(.subheadline)
                 .fontWeight(.medium)
                 .padding(.horizontal, 50)
@@ -116,7 +118,7 @@ struct MediumWidgetView : View {
             HStack {
                 avatar
                 
-                Text(latestEvent.event.description)
+                Text(event.description)
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .lineLimit(1)
@@ -127,7 +129,6 @@ struct MediumWidgetView : View {
         .padding(.vertical, 20)
         .background(Color(white: 0.1))
         .colorScheme(.dark)
-        .widgetURL(latestEvent.event.url)
     }
 }
 
@@ -140,8 +141,8 @@ struct iOS_Widget: Widget {
             EntryView(events: entry.events)
         }
         .supportedFamilies([.systemMedium])
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Push Request")
+        .description("See your latest GitHub notifications.")
     }
 }
 

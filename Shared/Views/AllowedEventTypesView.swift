@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct AllowedEventTypesView: View {
-    @EnvironmentObject var webhookService: WebhookService
-    @State private var allowedTypes: [WebhookEvent.EventType] = []
+    @EnvironmentObject var webhookProvider: WebhookProvider<DispatchQueue>
     
     let id: Int
     
     func typeBindingFor(_ type: WebhookEvent.EventType) -> Binding<Bool> {
         Binding { () -> Bool in
-            allowedTypes.contains(type)
+            self.webhookProvider.allowedEventTypes.contains(type)
         } set: { (isAllowed) in
             if isAllowed {
-                allowedTypes.append(type)
+                self.webhookProvider.allowedEventTypes.append(type)
             } else {
-                allowedTypes.removeAll(where: { $0 == type })
+                self.webhookProvider.allowedEventTypes.removeAll(where: { $0 == type })
             }
         }
 
@@ -50,19 +49,10 @@ struct AllowedEventTypesView: View {
         .navigationTitle("Subscribed Events")
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
-            self.webhookService.getAllowedEventTypes(forUserWithId: id) { (result) in
-                switch result {
-                case .success(let allowedTypes):
-                    self.allowedTypes = allowedTypes
-                    
-                case .failure(_):
-                    fatalError()
-                }
-            }
+            self.webhookProvider.loadAllowedEventTypes(forUserWithId: id)
         }
-        .onChange(of: allowedTypes) { newValue in
-            print("setting new allowed event types")
-            self.webhookService.setAllowedEventTypes(newValue, forUserWithId: id)
+        .onDisappear {
+            self.webhookProvider.updateAllowedEventTypes(forUserWithId: id)
         }
     }
 }
@@ -70,6 +60,6 @@ struct AllowedEventTypesView: View {
 struct AllowedEventTypesView_Previews: PreviewProvider {
     static var previews: some View {
         AllowedEventTypesView(id: 0)
-            .environmentObject(DummyWebhookService() as WebhookService)
+            .environmentObject(WebhookProvider(using: DummyWebhookService() as WebhookService, on: DispatchQueue.main))
     }
 }

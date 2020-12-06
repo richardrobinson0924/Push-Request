@@ -7,18 +7,24 @@
 
 import Foundation
 
-struct Configuration: Codable {
+struct Configuration {
     static let shared = Configuration()
     
-    let githubAppId: Int
-    let githubClientId: String
-    let githubClientSecret: String
-    let githubRedirectUri: String
-    let githubAppLink: String
+    let GITHUB_APP_ID: Int
+    let GITHUB_CLIENT_ID: String
+    let GITHUB_CLIENT_SECRET: String
+    let GITHUB_PUBLIC_LINK: URL
+    let GITHUB_CALLBACK_URL: URL
+    let SERVER_URL: URL
     
     init() {
-        let path = Bundle.main.path(forResource: "Preferences", ofType: "plist")!
-        let xml = FileManager.default.contents(atPath: path)!
-        self = try! PropertyListDecoder().decode(Self.self, from: xml)
+        let env = ProcessInfo.processInfo.environment
+        
+        self.GITHUB_APP_ID = Int(env["GITHUB_APP_ID"]!)!
+        self.GITHUB_CLIENT_ID = env["GITHUB_CLIENT_ID"]!
+        self.GITHUB_CLIENT_SECRET = env["GITHUB_CLIENT_SECRET"]!
+        self.GITHUB_PUBLIC_LINK = URL(string: env["GITHUB_PUBLIC_LINK"]!)!
+        self.GITHUB_CALLBACK_URL = URL(string: env["GITHUB_CALLBACK_URL"]!)!
+        self.SERVER_URL = URL(string: env["SERVER_URL"]!)!
     }
 }

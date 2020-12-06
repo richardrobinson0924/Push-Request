@@ -6,50 +6,58 @@
 //
 
 import Foundation
+import Combine
 
 struct Installations: Codable {
-    let totalCount: Int
+    let totalCount: Int?
 }
 
 class GithubService: ObservableObject {
     private let urlSession = URLSession.shared
     
-    func getUser(from accessToken: String, completion: @escaping (Result<GithubUser, Error>) -> Void) {
-        let url = URL(scheme: "https", host: "api.github.com", path: "/user")!
-        
-        var request = URLRequest(url: url)
-        request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
-        request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
-        
-        self.urlSession.dataTask(with: request) { (data, response, error) in
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            let result = Result {
-                try decoder.decode(GithubUser.self, from: data!)
-            }
-            
-            completion(result)
-        }.resume()
+    private var jsonDecoder: JSONDecoder {
+        let res = JSONDecoder()
+        res.keyDecodingStrategy = .convertFromSnakeCase
+        res.dateDecodingStrategy = .iso8601
+        return res
     }
     
-    func getNumberOfInstallations(from accessToken: String, completion: @escaping (Int?) -> Void) {
+    func getUser(from accessToken: String) -> AnyPublisher<GithubUser, Error> {
+        print("getting user from access token \(accessToken)")
+        let url = URL(scheme: "https", host: "api.github.com", path: "/user")!
+        
+        let request = URLRequest(
+            url: url,
+            httpHeaders: [
+                "Accept": "application/vnd.github.v3+json",
+                "Authorization": "token \(accessToken)"
+            ]
+        )
+        
+        return self.urlSession.dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: GithubUser.self, decoder: self.jsonDecoder)
+            .breakpointOnError()
+            .eraseToAnyPublisher()
+    }
+    
+    func getNumberOfInstallations(from accessToken: String) -> AnyPublisher<Int?, Never> {
         let url = URL(scheme: "https", host: "api.github.com", path: "/user/installations")!
         
-        var request = URLRequest(url: url)
-        request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
-        request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
+        let request = URLRequest(
+            url: url,
+            httpHeaders: [
+                "Accept": "application/vnd.github.v3+json",
+                "Authorization": "token \(accessToken)"
+            ]
+        )
         
-        self.urlSession.dataTask(with: request) { (data, response, error) in
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            guard let result = try? decoder.decode(Installations.self, from: data!) else {
-                completion(nil)
-                return
-            }
-            
-            completion(result.totalCount)
-        }.resume()
+        return self.urlSession.dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: Installations.self, decoder: self.jsonDecoder)
+            .breakpointOnError()
+            .map(\.totalCount)
+            .replaceError(with: nil)
+            .eraseToAnyPublisher()
     }
 }
