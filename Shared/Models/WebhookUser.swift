@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct WebhookEvent: Codable, Hashable {
     enum EventType: String, Codable, CaseIterable {

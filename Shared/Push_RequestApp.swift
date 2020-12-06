@@ -34,7 +34,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         let accessToken = UserDefaults.group.string(forKey: "accessToken")!
         
-        let receiveValue = { (ghUser: GithubUser) in
+        guard !UserDefaults.group.bool(forKey: "hasWebhookUser") else {
+            return
+        }
+        
+        let receiveValue = { [weak self] (ghUser: GithubUser) in
             UserDefaults.group.set(ghUser.id, forKey: "githubId")
             
             let webhookUser = WebhookUser(
@@ -44,7 +48,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 allowedTypes: WebhookEvent.EventType.allCases
             )
             
-            self.webhookService.addUser(webhookUser)
+            self?.webhookService.addUser(webhookUser)
+            UserDefaults.group.set(true, forKey: "hasWebhookUser")
         }
         
         let receiveCompletion = { (error: Subscribers.Completion<Error>) in

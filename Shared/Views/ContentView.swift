@@ -43,20 +43,11 @@ struct MainView: View {
     @State private var isDragging = false
     
     func makeLabel(title: String, systemName: String, iconColor: Color, textColor: Color) -> some View {
-        Label(
-            title: { Text(title)
-                .foregroundColor(textColor)
-                .padding(.vertical, 8)
-            },
-            icon: { RoundedRectangle(cornerRadius: 8)
-                .accentColor(iconColor)
-                .overlay(
-                    Image(systemName: systemName)
-                        .font(Font.system(size: 15, weight: .semibold, design: .default))
-                        .accentColor(.white)
-                )
-                .frame(width: 28, height: 28)
-            }
+        CellLabel(
+            title: title,
+            textColor: textColor,
+            image: Image(systemName: systemName),
+            iconColor: iconColor
         )
     }
     
@@ -97,14 +88,14 @@ struct MainView: View {
                         )
                     }
                     
-                    Link(destination: URL(string: "mailto:robinson.ian.richard@gmail.com")!) {
-                        makeLabel(
-                            title: "Review on the App Store",
-                            systemName: "heart.fill",
-                            iconColor: .pink,
-                            textColor: .primary
-                        )
-                    }
+//                    Link(destination: URL(string: "mailto:robinson.ian.richard@gmail.com")!) {
+//                        makeLabel(
+//                            title: "Review on the App Store",
+//                            systemName: "heart.fill",
+//                            iconColor: .pink,
+//                            textColor: .primary
+//                        )
+//                    }
                 }
             }
             .navigationTitle("Push Request")

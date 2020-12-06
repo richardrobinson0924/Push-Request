@@ -36,6 +36,7 @@ class GithubService: ObservableObject {
         
         return self.urlSession.dataTaskPublisher(for: request)
             .map(\.data)
+            .print()
             .decode(type: GithubUser.self, decoder: self.jsonDecoder)
             .breakpointOnError()
             .eraseToAnyPublisher()

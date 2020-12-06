@@ -9,70 +9,51 @@ import WidgetKit
 import SwiftUI
 import Combine
 
-func load(events: [WebhookEvent], completion: @escaping ([CellData]) -> Void) {
-    let group = DispatchGroup()
-    var result: [CellData] = []
-    
-    events.forEach { (event) in
-        group.enter()
-        URLSession.shared.dataTask(with: event.avatarUrl) { (data, response, error) in
-            result.append(CellData(event: event, avatarData: data!))
-            group.leave()
-        }.resume()
-    }
-    
-    group.notify(queue: .main) {
-        completion(result)
-    }
-}
+
 
 struct Provider: TimelineProvider {
     var cancellables: Set<AnyCancellable> = []
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), events: [])
+        SimpleEntry(date: Date(), eventInfos: [])
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), events: [])
-        completion(entry)
+        try! EventController.shared.fetchAllEventsWithData {
+            let entry = SimpleEntry(date: Date(), eventInfos: $0)
+            completion(entry)
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let events = try! EventController.shared.allEvents()
-        assert(!events.isEmpty)
-        
-        load(events: events) { (result) in
-            let entry = SimpleEntry(date: Date(), events: result)
+        self.getSnapshot(in: context) { (entry) in
             let timeline = Timeline(entries: [entry], policy: .never)
             completion(timeline)
         }
     }
 }
 
-struct CellData: Identifiable {
-    let id = UUID()
-    let event: WebhookEvent
-    let avatarData: Data
-}
-
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let events: [CellData]
+    let eventInfos: [(event: WebhookEvent, avatarData: Data)]
 }
 
 struct EntryView: View {
     @Environment(\.widgetFamily) var widgetFamily: WidgetFamily
-    let events: [CellData]
-    
+    let eventInfos: [(event: WebhookEvent, avatarData: Data)]
+
     var body: some View {
-        if events.isEmpty {
+        if eventInfos.isEmpty {
             Text("No Activity")
         } else {
             switch self.widgetFamily {
             case .systemMedium:
-                MediumWidgetView(event: events.last!.event, avatarData: events.last!.avatarData)
-                    .widgetURL(events.last!.event.url)
+                MediumWidgetView(
+                    event: eventInfos.last!.event,
+                    avatarData: eventInfos.last!.avatarData
+                )
+                .widgetURL(eventInfos.last!.event.url)
+                
             default:
                 fatalError()
             }
@@ -138,7 +119,7 @@ struct iOS_Widget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            EntryView(events: entry.events)
+            EntryView(eventInfos: entry.eventInfos)
         }
         .supportedFamilies([.systemMedium])
         .configurationDisplayName("Push Request")
@@ -160,15 +141,15 @@ struct iOS_Widget_Previews: PreviewProvider {
         url: URL(string: "https://www.apple.com")!
     )
     
-    static let events: [CellData] = [
-        CellData(event: event, avatarData: data),
-        CellData(event: event, avatarData: data),
-        CellData(event: event, avatarData: data)
+    static let events: [(event: WebhookEvent, avatarData: Data)] = [
+        (event: event, avatarData: data),
+        (event: event, avatarData: data),
+        (event: event, avatarData: data)
     ]
     
     static var previews: some View {
         Group {
-            EntryView(events: events)
+            EntryView(eventInfos: events)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
         }
     }

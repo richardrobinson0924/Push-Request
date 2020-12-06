@@ -27,8 +27,12 @@ struct AllowedEventTypesView: View {
 
     func getCell(for type: WebhookEvent.EventType) -> some View {
         Toggle(isOn: typeBindingFor(type)) {
-            Label(type.displayName, image: type.iconName)
-                .accentColor(type.iconColor)
+            CellLabel(
+                title: type.displayName,
+                textColor: .primary,
+                image: Image(type.iconName).resizable(),
+                iconColor: type.iconColor
+            )
         }
     }
     

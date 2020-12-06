@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import Combine
 
-class EventController {
+class EventController: ObservableObject {
     static let shared = EventController(userDefaults: .group, maximumNumberOfEvents: 3)
     
     private static let KEY = "push-request-events"
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private let userDefaults: UserDefaults
     private let maximumNumberOfEvents: Int
@@ -34,5 +37,23 @@ class EventController {
     func allEvents() throws -> [WebhookEvent] {
         let decoded = self.userDefaults.data(forKey: Self.KEY)
         return try decoded.map { try decoder.decode([WebhookEvent].self, from: $0) } ?? []
+    }
+    
+    func fetchAllEventsWithData(_ completion: @escaping ([(event: WebhookEvent, avatarData: Data)]) -> Void) throws {
+        let publishers = try allEvents().map(getEventWithData(_:))
+        
+        Publishers.MergeMany(publishers)
+            .replaceError(with: nil)
+            .compactMap { $0 }
+            .collect()
+            .sink(receiveValue: completion)
+            .store(in: &cancellables)
+    }
+    
+    private func getEventWithData(_ event: WebhookEvent) -> AnyPublisher<(event: WebhookEvent, avatarData: Data)?, URLError> {
+        URLSession.shared.dataTaskPublisher(for: event.avatarUrl)
+            .map(\.data)
+            .compactMap { (event: event, avatarData: $0) }
+            .eraseToAnyPublisher()
     }
 }
